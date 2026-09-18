@@ -1,0 +1,13 @@
+{
+  "accentColor": "",
+  "cssTheme": "AnuPpuccin",
+  "baseFontSize": 13,
+  "textFontFamily": "LXGW Neo XiHei",
+  "interfaceFontFamily": "",
+  "monospaceFontFamily": "JetBrains Mono",
+  "enabledCssSnippets": [
+    "extended-colorschemes"
+  ],
+  "translucency": true,
+  "theme": "moonstone"
+}
