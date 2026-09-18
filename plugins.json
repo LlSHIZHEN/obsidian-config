@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T12:11:34Z",
+  "generatedAt": "2026-09-18T12:22:33Z",
   "generatedFromVault": "AIEngineering",
   "pluginCount": 5,
   "plugins": [
@@ -103,5 +103,85 @@
       "bundle": "bundles/obsidian-banners/1.3.3",
       "sourceArchive": null
     }
-  ]
+  ],
+  "appearance": {
+    "theme": {
+      "name": "AnuPpuccin",
+      "version": "1.5.0",
+      "author": "Anubis",
+      "authorUrl": "https://github.com/AnubisNekhet",
+      "repo": "anubisnekhet/AnuPpuccin",
+      "ref": "82d207c646904e7af371ced499f682fbdfad1012",
+      "refKind": "main-head",
+      "files": {
+        "theme.css": "83ba4f6646f79bdc38920fd074c6734d7e6833f97184c0cb001f4eebef3231d7"
+      }
+    },
+    "snippets": [
+      {
+        "file": "custom-background.css",
+        "bytes": 5588,
+        "sha256": "145e060073a4f81c9d0d3ef9ea5b1ddbabd2cca1b268fdc5dddf78a07f0d56e8",
+        "declaredAuthor": "AnubisNekhet",
+        "declaredLicense": "AGPL-3.0",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-background.css"
+      },
+      {
+        "file": "custom-rainbow-colors.css",
+        "bytes": 322227,
+        "sha256": "ee2b043932b4e9394c4a0d679a856dbe3684a37ec3db3122d928af8064b51a61",
+        "declaredAuthor": "AnubisNekhet",
+        "declaredLicense": "AGPL-3.0",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-rainbow-colors.css"
+      },
+      {
+        "file": "extended-colorschemes.css",
+        "bytes": 42015,
+        "sha256": "ac7a68c1e29ba1a56b0b1a786ec88e48e518ddf1c1943ed0c264dae6fa13d6f5",
+        "declaredAuthor": null,
+        "declaredLicense": null,
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/extended-colorschemes.css"
+      },
+      {
+        "file": "floating-search-bar.css",
+        "bytes": 1770,
+        "sha256": "4ebd2299ec1c47c9fc389e26ea5ea74da27bb9346e07e832157773a65c60bf16",
+        "declaredAuthor": "AnubisNekhet",
+        "declaredLicense": "AGPL-3.0",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-search-bar.css"
+      },
+      {
+        "file": "floating-status-bar.css",
+        "bytes": 743,
+        "sha256": "3e491b6d27ed0bfb772f977b2631bae4a33714513a339b6fabb815dc5855c636",
+        "declaredAuthor": "AnubisNekhet",
+        "declaredLicense": "AGPL-3.0",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-status-bar.css"
+      },
+      {
+        "file": "its-frontmatter.css",
+        "bytes": 2554,
+        "sha256": "fbfc602041950740288db474324fe3678e086fa0a837b5274cb61b9ff3910c59",
+        "declaredAuthor": "SlRvb",
+        "declaredLicense": null,
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/its-frontmatter.css"
+      },
+      {
+        "file": "minimal-cards.css",
+        "bytes": 9169,
+        "sha256": "bd7c9bae65e5060789eac98e49e5018c887483b4935deb38eb5b592e9d254b56",
+        "declaredAuthor": "@kepano",
+        "declaredLicense": "MIT",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/minimal-cards.css"
+      },
+      {
+        "file": "notion-cards.css",
+        "bytes": 9341,
+        "sha256": "391ce490e5530519a8df02fb029fc49b315f14f491723a7d160019555b46d105",
+        "declaredAuthor": "AnubisNekhet",
+        "declaredLicense": "AGPL-3.0",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/notion-cards.css"
+      }
+    ]
+  }
 }

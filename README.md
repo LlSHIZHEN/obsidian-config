@@ -28,6 +28,7 @@
 plugins.json          机器可读清单：id → 仓库 → 锁定版本 → commit → 许可证 → sha256
 PLUGINS.md            人类可读的插件表格（自动生成）
 NOTICE.md             第三方归属声明与许可证义务（自动生成，public 仓库合规关键）
+APPEARANCE.md         主题与 CSS 片段的来源、锁定 commit 与校验和（自动生成）
 config/               核心插件开关、外观设置等配置快照
 bundles/<id>/<ver>/   插件产物快照
     main.js           插件本体
@@ -56,6 +57,9 @@ cd obsidian-plugin-kit
 
 # 4. 一键恢复插件（优先用仓库内快照，离线也能装）
 python3 scripts/install.py --target "/path/to/你的新 vault" --with-config
+
+# 5. 恢复主题与 CSS 片段（这一步需要联网：本仓库不含它们的文件本体）
+python3 scripts/install.py --target "/path/to/你的新 vault" --with-appearance
 ```
 
 参数说明：
@@ -65,11 +69,27 @@ python3 scripts/install.py --target "/path/to/你的新 vault" --with-config
 | `--target` | 目标 vault 路径（必填） |
 | `--offline` | 只用仓库内快照，绝不联网 |
 | `--force` | 目标已存在同名插件时覆盖 |
-| `--with-config` | 一并恢复核心插件开关与外观（原文件会备份成 `.bak`） |
+| `--with-config` | 恢复核心插件开关与外观设置（原文件会备份成 `.bak`） |
+| `--with-appearance` | 恢复主题与 CSS 片段（回上游下载并校验 sha256） |
 | `--only a,b` | 只恢复指定插件 |
 
 安装完成后 **重启 Obsidian**，进入 `设置 → 第三方插件`，关闭「受限模式」，
 插件就会按 `community-plugins.json` 自动启用。
+
+### 为什么主题和片段不在仓库里
+
+插件产物我做了离线快照，但**主题和 CSS 片段故意不打包**：它们同样是他人作品，
+而且多方使用 **AGPL-3.0 / GPL-3.0** 这类强 copyleft 许可证，在公开仓库里
+分发会给你带来分发义务。所以这里只记录来源、锁定 commit 与 sha256，
+安装时回上游取——**本仓库不分发它们，也就不产生再分发义务**。
+
+代价是这一步必须联网，而且上游哪天删库就取不到了。详见 [APPEARANCE.md](APPEARANCE.md)。
+
+> ⚠️ **主题的版本号不可信**。实测 `AnuPpuccin` 的 `manifest.json` 声明版本
+> `1.5.0`，但它实际的 `theme.css` 来自 **main 分支**，与 `v1.5.0` release
+> 的产物**内容不同**。所以 `export.py` 不会直接按版本号下载，而是逐个探测
+> main HEAD、`v<版本>`、`<版本>` 哪个的产物与本地**逐字节一致**，锁定匹配的
+> commit；都匹配不上就明确报错（说明你本地改过），而不是静默装回一个不一样的东西。
 
 > ⚠️ 如果你要迁移的是**笔记本身**而不是插件，看另一个仓库
 > `LlSHIZHEN/MYOBSIDIAN`（那是笔记，这是环境）。

@@ -2,7 +2,7 @@
 
 > 本文件由 `scripts/export.py` 自动生成，请勿手工编辑。
 
-生成时间：`2026-09-18T12:11:34Z`　|　来源 vault：`AIEngineering`　|　插件数：**5**
+生成时间：`2026-09-18T12:22:33Z`　|　来源 vault：`AIEngineering`　|　插件数：**5**
 
 ## 社区插件
 

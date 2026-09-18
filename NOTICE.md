@@ -40,6 +40,16 @@
 
 - **Style Settings** `1.0.9` —— GPL-3.0；源码归档：`bundles/obsidian-style-settings/1.0.9/source.tar.gz`
 
+## 主题与 CSS 片段：本仓库不包含，仅作指引
+
+`config/appearance.json` 里引用的主题与 CSS 片段**不在本仓库中**。
+它们同样是他人的作品（多方使用 GPL / AGPL 系列许可证），
+但本仓库**没有分发它们的文件本体**，因此在这一点上不产生再分发义务；
+清单里只记录了名称、作者、来源仓库、锁定的 commit 与 sha256 校验和，
+由使用者在安装时**自行从上游获取**。
+
+详见 [APPEARANCE.md](APPEARANCE.md)。
+
 ## 如果你要拿走这里的插件
 
 请不要直接用本仓库的副本，而是回到**上游来源仓库**下载最新版，
