@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-18T12:22:33Z",
+  "generatedAt": "2026-09-18T12:24:39Z",
   "generatedFromVault": "AIEngineering",
-  "pluginCount": 5,
+  "pluginCount": 7,
   "plugins": [
     {
       "id": "obsidian-git",
@@ -101,6 +101,46 @@
       },
       "licenseFile": "bundles/obsidian-banners/1.3.3/LICENSE",
       "bundle": "bundles/obsidian-banners/1.3.3",
+      "sourceArchive": null
+    },
+    {
+      "id": "image-previewer",
+      "name": "Image Previewer",
+      "version": "1.0.2",
+      "minAppVersion": "0.15.0",
+      "isDesktopOnly": false,
+      "author": "qingrui",
+      "authorUrl": "https://github.com/qingruikz",
+      "repo": "qingruikz/image-previewer",
+      "tag": "1.0.2",
+      "commit": "4c0c74392f68e64be08da11ec00c5065d3454df6",
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "path": "LICENSE"
+      },
+      "licenseFile": "bundles/image-previewer/1.0.2/LICENSE",
+      "bundle": "bundles/image-previewer/1.0.2",
+      "sourceArchive": null
+    },
+    {
+      "id": "mermaid-lens",
+      "name": "Mermaid Lens",
+      "version": "0.2.3",
+      "minAppVersion": "1.12.0",
+      "isDesktopOnly": false,
+      "author": "aitsuki",
+      "authorUrl": "https://github.com/aitsuki",
+      "repo": "aitsuki/obsidian-mermaid-lens",
+      "tag": "0.2.3",
+      "commit": "382c5af5012de1606a21394c6ea4b7e3d6ea322b",
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "path": "LICENSE"
+      },
+      "licenseFile": "bundles/mermaid-lens/0.2.3/LICENSE",
+      "bundle": "bundles/mermaid-lens/0.2.3",
       "sourceArchive": null
     }
   ],

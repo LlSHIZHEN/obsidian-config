@@ -2,7 +2,7 @@
 
 > 本文件由 `scripts/export.py` 自动生成，请勿手工编辑。
 
-生成时间：`2026-09-18T12:22:33Z`　|　来源 vault：`AIEngineering`　|　插件数：**5**
+生成时间：`2026-09-18T12:24:39Z`　|　来源 vault：`AIEngineering`　|　插件数：**7**
 
 ## 社区插件
 
@@ -13,6 +13,8 @@
 | `obsidian-icon-folder` | Iconize | `2.14.7` | [Florian Woelki](https://florianwoelki.com/) | [FlorianWoelki/obsidian-iconize](https://github.com/FlorianWoelki/obsidian-iconize) | `MIT` |
 | `editing-toolbar` | Editing Toolbar | `4.1.4` | [Cuman](https://github.com/cumany) | [PKM-er/obsidian-editing-toolbar](https://github.com/PKM-er/obsidian-editing-toolbar) | `MPL-2.0` |
 | `obsidian-banners` | Banners | `1.3.3` | [Danny Hernandez](https://github.com/noatpad) | [noatpad/obsidian-banners](https://github.com/noatpad/obsidian-banners) | `MIT` |
+| `image-previewer` | Image Previewer | `1.0.2` | [qingrui](https://github.com/qingruikz) | [qingruikz/image-previewer](https://github.com/qingruikz/image-previewer) | `MIT` |
+| `mermaid-lens` | Mermaid Lens | `0.2.3` | [aitsuki](https://github.com/aitsuki) | [aitsuki/obsidian-mermaid-lens](https://github.com/aitsuki/obsidian-mermaid-lens) | `MIT` |
 
 ## 版本锁定与溯源
 
@@ -26,6 +28,8 @@
 | `obsidian-icon-folder` | `2.14.7` | `1264d5800a02` |
 | `editing-toolbar` | `4.1.4` | `2ce7d3db0d27` |
 | `obsidian-banners` | `1.3.3` | `b4601ca54814` |
+| `image-previewer` | `1.0.2` | `4c0c74392f68` |
+| `mermaid-lens` | `0.2.3` | `382c5af5012d` |
 
 ## 版权与出处
 

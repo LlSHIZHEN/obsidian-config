@@ -1,0 +1,181 @@
+/* styles.css */
+
+.modal.image-toolkit-modal {
+	background-color: transparent;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+}
+
+.modal.image-toolkit-modal .modal-close-button {
+	display: none;
+}
+
+.image-toolkit-modal-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.image-toolkit-close-button {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 101;
+	background-color: rgba(20, 20, 20, 0.8);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.1s;
+}
+
+.image-toolkit-close-button .svg-icon {
+	width: 28px;
+	height: 28px;
+	min-width: 28px;
+	min-height: 28px;
+	flex-shrink: 0;
+}
+
+.image-toolkit-close-button:hover {
+	background-color: #e63946;
+}
+
+.image-toolkit-close-button:active {
+	transform: translateX(-50%) scale(0.92);
+}
+
+.image-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	touch-action: none;
+}
+
+.preview-image {
+	max-width: 95vw;
+	max-height: 80vh;
+	object-fit: contain;
+	transition: transform 0.25s ease-out, filter 0.25s ease-out;
+	-webkit-user-drag: none;
+	user-select: none;
+}
+
+/* **新增：拖动状态的鼠标指针样式** */
+.preview-image.is-draggable {
+	cursor: grab;
+	/* 可抓取状态 */
+}
+
+.preview-image.is-draggable.is-panning {
+	cursor: grabbing;
+	/* 正在抓取状态 */
+}
+
+.controls-container {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	z-index: 100;
+}
+
+.rotation-slider-container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.rotation-value {
+	color: white;
+	font-size: 14px;
+	font-weight: 500;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 4px 8px;
+	border-radius: 6px;
+	min-width: 40px;
+	text-align: center;
+}
+
+.rotation-slider {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 8px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 5px;
+	outline: none;
+	cursor: pointer;
+}
+
+.rotation-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background: var(--interactive-accent);
+	border-radius: 50%;
+	border: 2px solid white;
+}
+
+.image-toolkit-toolbar {
+	background-color: rgba(20, 20, 20, 0.8);
+	border-radius: 12px;
+	padding: 8px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+}
+
+.image-toolkit-toolbar button {
+	background-color: var(--background-modifier-hover);
+	color: var(--text-muted);
+	border: none;
+	border-radius: 8px;
+	width: 44px;
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.1s;
+}
+
+.image-toolkit-toolbar button .svg-icon {
+	width: 22px;
+	height: 22px;
+	min-width: 22px;
+	min-height: 22px;
+	flex-shrink: 0;
+}
+
+.image-toolkit-toolbar button:hover {
+	background-color: var(--background-modifier-border-hover);
+	color: var(--text-normal);
+}
+
+.image-toolkit-toolbar button:active {
+	transform: scale(0.92);
+}

@@ -1,0 +1,153 @@
+.mermaid-lens-host {
+  position: relative;
+  overflow-x: auto;
+}
+
+.mermaid-lens-host[data-mermaid-lens-trigger="single"] {
+  cursor: zoom-in;
+}
+
+/*
+ * Apply before the registry mounts, including SVGs nested in Obsidian wrappers.
+ * Do not override Mermaid's inline pixel max-width: doing so stretches small
+ * diagrams to the full note width. `width: auto` keeps their intrinsic size,
+ * while the fallback max-width still constrains genuinely large diagrams.
+ */
+.mermaid svg,
+.mermaid-preview svg {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-lens-expand {
+  position: absolute;
+  z-index: 5;
+  top: 6px;
+  /* Leave Obsidian's edit-block button unobstructed at the far right. */
+  right: 42px;
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  background: var(--background-primary-alt);
+  opacity: 0;
+  transition: opacity 120ms ease, color 120ms ease;
+  cursor: pointer;
+}
+
+.mermaid-lens-host:hover > .mermaid-lens-expand,
+.mermaid-lens-expand:focus-visible {
+  opacity: 0.9;
+}
+
+.mermaid-lens-host > .mermaid-lens-expand:hover {
+  color: var(--text-normal);
+  opacity: 1;
+}
+
+.mermaid-lens-modal {
+  width: min(96vw, 1800px);
+  max-width: none;
+  height: 92vh;
+}
+
+.mermaid-lens-modal .modal-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mermaid-lens-toolbar {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 44px 8px 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.mermaid-lens-title {
+  font-weight: 600;
+}
+
+.mermaid-lens-help {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.mermaid-lens-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.mermaid-lens-controls button {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+}
+
+.mermaid-lens-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  overscroll-behavior: contain;
+  background-color: var(--background-primary);
+  background-image: radial-gradient(var(--background-modifier-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.mermaid-lens-stage.is-dragging {
+  cursor: grabbing;
+}
+
+.mermaid-lens-modal .mermaid-lens-stage > .mermaid-lens-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  max-height: none;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.mermaid-lens-config-setting {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.mermaid-lens-config-setting .setting-item-info,
+.mermaid-lens-config-setting .setting-item-control {
+  width: 100%;
+}
+
+.mermaid-lens-config-setting .setting-item-control {
+  justify-content: flex-start;
+}
+
+.mermaid-lens-config-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  resize: vertical;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+}
+
+@media (hover: none) {
+  .mermaid-lens-expand { opacity: 0.9; }
+}
+
+@media (max-width: 600px) {
+  .mermaid-lens-modal { width: 100vw; height: 100vh; }
+  .mermaid-lens-help { display: none; }
+}

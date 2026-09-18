@@ -18,6 +18,8 @@
 | `obsidian-icon-folder` | Iconize | `2.14.7` | Florian Woelki | [FlorianWoelki/obsidian-iconize](https://github.com/FlorianWoelki/obsidian-iconize) | [`MIT`](bundles/obsidian-icon-folder/2.14.7/LICENSE) | `1264d5800a02` |
 | `editing-toolbar` | Editing Toolbar | `4.1.4` | Cuman | [PKM-er/obsidian-editing-toolbar](https://github.com/PKM-er/obsidian-editing-toolbar) | [`MPL-2.0`](bundles/editing-toolbar/4.1.4/LICENSE) | `2ce7d3db0d27` |
 | `obsidian-banners` | Banners | `1.3.3` | Danny Hernandez | [noatpad/obsidian-banners](https://github.com/noatpad/obsidian-banners) | [`MIT`](bundles/obsidian-banners/1.3.3/LICENSE) | `b4601ca54814` |
+| `image-previewer` | Image Previewer | `1.0.2` | qingrui | [qingruikz/image-previewer](https://github.com/qingruikz/image-previewer) | [`MIT`](bundles/image-previewer/1.0.2/LICENSE) | `4c0c74392f68` |
+| `mermaid-lens` | Mermaid Lens | `0.2.3` | aitsuki | [aitsuki/obsidian-mermaid-lens](https://github.com/aitsuki/obsidian-mermaid-lens) | [`MIT`](bundles/mermaid-lens/0.2.3/LICENSE) | `382c5af5012d` |
 
 对照关系：上表每一行对应 `bundles/<插件 ID>/<版本>/`，该目录内包含
 

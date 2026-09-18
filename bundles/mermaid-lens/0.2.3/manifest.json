@@ -1,0 +1,10 @@
+{
+  "id": "mermaid-lens",
+  "name": "Mermaid Lens",
+  "version": "0.2.3",
+  "minAppVersion": "1.12.0",
+  "description": "Apply one global Mermaid configuration and open diagrams in a draggable, zoomable viewer.",
+  "author": "aitsuki",
+  "authorUrl": "https://github.com/aitsuki",
+  "isDesktopOnly": false
+}

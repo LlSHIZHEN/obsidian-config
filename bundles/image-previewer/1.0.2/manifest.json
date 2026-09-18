@@ -1,0 +1,13 @@
+{
+	"id": "image-previewer",
+	"name": "Image Previewer",
+	"version": "1.0.2",
+	"minAppVersion": "0.15.0",
+	"description": "A powerful image viewer. Features include zooming, panning, rotating, flipping, and grayscale toggle.",
+	"author": "qingrui",
+	"authorUrl": "https://github.com/qingruikz",
+	"fundingUrl": {
+		"Buy Me a Coffee": "https://buymeacoffee.com/qingruikz"
+	},
+	"isDesktopOnly": false
+}
