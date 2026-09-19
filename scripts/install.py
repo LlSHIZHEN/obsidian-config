@@ -108,9 +108,10 @@ def restore_appearance(root, cfg, data, offline):
 
     if offline:
         print("\n→ 外观资产：离线模式")
+        # 离线跳过上游资产是使用者的主动选择，不是错误：
+        # 打印出来并交给 check_dangling 去提示，但不计入失败退出码。
         if t:
             print("   ⏭ 主题 %s 跳过（上游资产，需联网）" % t.get("name"))
-            problems.append("主题 %s 未恢复（离线）" % t.get("name"))
         locals_ = [s for s in sn if s.get("origin") == "local"]
         ups = [s for s in sn if s.get("origin") != "local"]
         if locals_:
@@ -126,11 +127,11 @@ def restore_appearance(root, cfg, data, offline):
                 shutil.copy2(src, dst)
                 if sha256(dst) != s["sha256"]:
                     problems.append("本地片段 %s 校验和不符" % s["file"])
+                    print("   ⚠️  %s 校验和不符" % s["file"])
                 else:
                     print("   ✓ %s（本地原创，已校验）" % s["file"])
         if ups:
-            print("   ⏭ %d 个上游片段跳过（需联网）" % len(ups))
-            problems.append("%d 个上游片段未恢复（离线）" % len(ups))
+            print("   ⏭ %d 个上游片段跳过（需联网，非错误）" % len(ups))
         return problems
 
     if t and t.get("ref"):
@@ -330,7 +331,9 @@ def main():
         print("外观资产问题：")
         for m in appearance_problems:
             print("   · %s" % m)
-    if dangling and not a.with_appearance:
+    if dangling and a.offline:
+        print("\n提示：去掉 --offline 即可从上游恢复主题与 CSS 片段。")
+    elif dangling and not a.with_appearance:
         print("\n提示：加上 --with-appearance 可从上游恢复主题与 CSS 片段。")
     if installed:
         print("\n下一步：重启 Obsidian，进入 设置 → 第三方插件，"
