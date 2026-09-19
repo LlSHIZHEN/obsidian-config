@@ -50,8 +50,8 @@ scripts/
 xcode-select --install
 
 # 2. 克隆本仓库
-git clone https://github.com/LlSHIZHEN/obsidian-plugin-kit.git
-cd obsidian-plugin-kit
+git clone https://github.com/LlSHIZHEN/obsidian-config.git
+cd obsidian-config
 
 # 3. 装 Obsidian，然后随便建一个空 vault，记下它的路径
 
@@ -92,7 +92,7 @@ python3 scripts/install.py --target "/path/to/你的新 vault" --with-appearance
 > commit；都匹配不上就明确报错（说明你本地改过），而不是静默装回一个不一样的东西。
 
 > ⚠️ 如果你要迁移的是**笔记本身**而不是插件，看另一个仓库
-> `LlSHIZHEN/MYOBSIDIAN`（那是笔记，这是环境）。
+> `LlSHIZHEN/knowledge-base`（那是笔记，这是环境）。
 
 ## 更新这份清单
 

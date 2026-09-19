@@ -74,7 +74,7 @@ class Api:
             url += "?ref=" + ref
         req = urllib.request.Request(url, headers={
             "Accept": "application/vnd.github+json",
-            "User-Agent": "obsidian-plugin-kit",
+            "User-Agent": "obsidian-config",
         })
         with urllib.request.urlopen(req, timeout=30) as r:
             return json.load(r)
