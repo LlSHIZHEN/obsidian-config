@@ -20,6 +20,8 @@
 | `obsidian-banners` | Banners | `1.3.3` | Danny Hernandez | [noatpad/obsidian-banners](https://github.com/noatpad/obsidian-banners) | [`MIT`](bundles/obsidian-banners/1.3.3/LICENSE) | `b4601ca54814` |
 | `image-previewer` | Image Previewer | `1.0.2` | qingrui | [qingruikz/image-previewer](https://github.com/qingruikz/image-previewer) | [`MIT`](bundles/image-previewer/1.0.2/LICENSE) | `4c0c74392f68` |
 | `mermaid-lens` | Mermaid Lens | `0.2.3` | aitsuki | [aitsuki/obsidian-mermaid-lens](https://github.com/aitsuki/obsidian-mermaid-lens) | [`MIT`](bundles/mermaid-lens/0.2.3/LICENSE) | `382c5af5012d` |
+| `unified-typography` | Unified Typography | `0.1.2` | Tychoon | [tychoon/unified-typography](https://github.com/tychoon/unified-typography) | [`MIT`](bundles/unified-typography/0.1.2/LICENSE) | `e380db1747a1` |
+| `obsidian-spaced-repetition` | Spaced Repetition | `1.15.4` | Stephen Mwangi | [st3v3nmw/obsidian-spaced-repetition](https://github.com/st3v3nmw/obsidian-spaced-repetition) | [`MIT`](bundles/obsidian-spaced-repetition/1.15.4/LICENSE) | `0f81fc147bc8` |
 
 对照关系：上表每一行对应 `bundles/<插件 ID>/<版本>/`，该目录内包含
 
@@ -42,13 +44,21 @@
 
 - **Style Settings** `1.0.9` —— GPL-3.0；源码归档：`bundles/obsidian-style-settings/1.0.9/source.tar.gz`
 
-## 主题与 CSS 片段：本仓库不包含，仅作指引
+## 主题与 CSS 片段：第三方部分本仓库不包含
 
-`config/appearance.json` 里引用的主题与 CSS 片段**不在本仓库中**。
-它们同样是他人的作品（多方使用 GPL / AGPL 系列许可证），
-但本仓库**没有分发它们的文件本体**，因此在这一点上不产生再分发义务；
+`config/appearance.json` 里引用的主题与**来自上游的** CSS 片段
+**不在本仓库中**。它们是他人的作品（多方使用 GPL / AGPL 系列许可证），
+本仓库**没有分发它们的文件本体**，因此在这一点上不产生再分发义务；
 清单里只记录了名称、作者、来源仓库、锁定的 commit 与 sha256 校验和，
 由使用者在安装时**自行从上游获取**。
+
+**例外**：下列片段是仓库所有者**自己编写**的，上游并不存在，
+因此随本仓库一并打包。它们是所有者本人的作品，不涉及第三方著作权：
+
+- `text-contrast-fix.css` —— `local/snippets/text-contrast-fix.css`
+
+（脚本对每个片段回上游比对 sha256 来判定归属，避免把自有作品
+错标成他人作品，也避免新电脑上无法还原。）
 
 详见 [APPEARANCE.md](APPEARANCE.md)。
 

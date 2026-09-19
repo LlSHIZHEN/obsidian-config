@@ -3,10 +3,18 @@
   "cssTheme": "AnuPpuccin",
   "baseFontSize": 14,
   "textFontFamily": "LXGW Neo XiHei",
-  "interfaceFontFamily": "",
-  "monospaceFontFamily": "JetBrains Mono",
+  "interfaceFontFamily": "Inter",
+  "monospaceFontFamily": "Inter",
   "enabledCssSnippets": [
-    "extended-colorschemes"
+    "extended-colorschemes",
+    "text-contrast-fix",
+    "custom-rainbow-colors",
+    "custom-background",
+    "floating-search-bar",
+    "floating-status-bar",
+    "its-frontmatter",
+    "minimal-cards",
+    "notion-cards"
   ],
   "translucency": false,
   "theme": "system"

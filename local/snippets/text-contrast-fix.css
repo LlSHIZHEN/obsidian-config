@@ -1,0 +1,11 @@
+/* AnuPpuccin 把 --text-muted 映射到 overlay2、--text-faint 映射到 subtext0，
+   导致 muted(124) 比 faint(108) 还淡，与 Obsidian 语义相反。
+   此处只交换这两个「语义变量」，不修改调色板本身——
+   因为 --ctp-subtext0 同时是复选框边框色、--ctp-overlay2 同时是 Canvas 节点色。*/
+
+body.theme-light,
+body.theme-dark {
+  --text-muted: rgb(var(--ctp-subtext0));
+  --text-muted-rgb: var(--ctp-subtext0);
+  --text-faint: rgb(var(--ctp-overlay2));
+}

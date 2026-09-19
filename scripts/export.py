@@ -22,6 +22,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import urllib.request
@@ -187,7 +188,7 @@ def build(vault, outdir):
         print("  ✓ %-26s %-8s %s" % (pid, ver, repo or "❌ 未知仓库"))
 
     print("\n→ 扫描主题与 CSS 片段（只记录来源，不打包）…")
-    appearance = scan_appearance(vault, api)
+    appearance = scan_appearance(vault, api, outdir)
 
     data = {
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -270,28 +271,60 @@ def write_appearance_md(data, outdir):
         L += [
             "## CSS 片段",
             "",
-            "| 文件 | 大小 | 注释中声明的作者 | 注释中声明的许可证 | 来源 |",
-            "|---|---|---|---|---|",
+            "| 文件 | 大小 | 来源类型 | 注释中声明的作者 | 注释中声明的许可证 | 获取方式 |",
+            "|---|---|---|---|---|---|",
         ]
         for s in a["snippets"]:
-            L.append("| `%s` | %d B | %s | `%s` | %s |" % (
+            local = s.get("origin") == "local"
+            L.append("| `%s` | %d B | %s | %s | `%s` | %s |" % (
                 s["file"], s["bytes"],
+                "**本地原创**" if local else "上游主题仓库",
                 s.get("declaredAuthor") or "未声明",
                 s.get("declaredLicense") or "未声明",
-                "[上游](%s)" % s["sourceUrl"] if s.get("sourceUrl") else "❌ 未知"))
+                "本仓库内 `%s`" % s["bundle"] if local
+                else ("[上游](%s)" % s["sourceUrl"] if s.get("sourceUrl")
+                      else "❌ 未知")))
+        locals_ = [s for s in a["snippets"] if s.get("origin") == "local"]
+        third = [s for s in a["snippets"] if s.get("origin") != "local"]
         L += [
             "",
-            "> 片段通常没有 manifest，许可证与作者信息只写在 CSS 注释里，",
-            "上表由脚本从注释中解析得到，可能不完整。",
-            "",
-            "### 许可证不一致的提示",
-            "",
-            "这些片段来自 AnuPpuccin 仓库，部分文件的注释声明为 **AGPL-3.0**，",
-            "而该仓库自身的 LICENSE 文件是 **GPL-3.0**。两者不一致时，",
-            "本清单按文件注释里声明的、更严格的许可证记录。若你要另行使用",
-            "这些文件，请自行向上游作者确认。",
+            "来源类型由脚本逐个回上游比对 sha256 判定，**不是按文件名猜的**：",
+            "与上游主题仓库同路径文件逐字节一致 → 上游；否则 → 本地原创。",
             "",
         ]
+        if locals_:
+            L += [
+                "### 本地原创的片段",
+                "",
+                "以下片段在你本地编写、上游并不存在，因此**无法从上游下载**，",
+                "已随本仓库打包（它们是**你自己的作品**，不涉及第三方许可）：",
+                "",
+            ]
+            for s in locals_:
+                L.append("- `%s` —— 存放于 `%s`" % (s["file"], s["bundle"]))
+            L += [
+                "",
+                "> ⚠️ 若脚本错误的把这类片段当作上游文件，结果会是：公开仓库里把你的",
+                "原创作品错标成他人作品，且新电脑恢复时 404、**你的自定义静默丢失**。",
+                "这正是加入逐文件 sha256 比对的原因。",
+                "",
+            ]
+        if third:
+            L += [
+                "### 上游片段",
+                "",
+                "其余片段与上游主题仓库逐字节一致，因此**不随本仓库分发**",
+                "（多为 GPL/AGPL 作品，公开仓库分发会引入 copyleft 义务），",
+                "由安装脚本按锁定 commit 回上游下载并校验。",
+                "",
+                "### 许可证不一致的提示",
+                "",
+                "上游片段里有部分文件的注释声明为 **AGPL-3.0**，而该仓库自身的",
+                "LICENSE 文件是 **GPL-3.0**。两者不一致时，本清单按文件注释里",
+                "声明的、更严格的许可证记录。若你要另行使用这些文件，",
+                "请自行向上游作者确认。",
+                "",
+            ]
     L += [
         "## 校验方式",
         "",
@@ -366,15 +399,33 @@ def write_notice_md(data, outdir):
                 (p.get("license") or {}).get("spdx", "GPL"),
                 p.get("sourceArchive") or "（缺失，请勿分发）"))
         L.append("")
+    local_sn = [s for s in (data.get("appearance") or {}).get("snippets", [])
+                if s.get("origin") == "local"]
     L += [
-        "## 主题与 CSS 片段：本仓库不包含，仅作指引",
+        "## 主题与 CSS 片段：第三方部分本仓库不包含",
         "",
-        "`config/appearance.json` 里引用的主题与 CSS 片段**不在本仓库中**。",
-        "它们同样是他人的作品（多方使用 GPL / AGPL 系列许可证），",
-        "但本仓库**没有分发它们的文件本体**，因此在这一点上不产生再分发义务；",
+        "`config/appearance.json` 里引用的主题与**来自上游的** CSS 片段",
+        "**不在本仓库中**。它们是他人的作品（多方使用 GPL / AGPL 系列许可证），",
+        "本仓库**没有分发它们的文件本体**，因此在这一点上不产生再分发义务；",
         "清单里只记录了名称、作者、来源仓库、锁定的 commit 与 sha256 校验和，",
         "由使用者在安装时**自行从上游获取**。",
         "",
+    ]
+    if local_sn:
+        L += [
+            "**例外**：下列片段是仓库所有者**自己编写**的，上游并不存在，",
+            "因此随本仓库一并打包。它们是所有者本人的作品，不涉及第三方著作权：",
+            "",
+        ]
+        for s in local_sn:
+            L.append("- `%s` —— `%s`" % (s["file"], s["bundle"]))
+        L += [
+            "",
+            "（脚本对每个片段回上游比对 sha256 来判定归属，避免把自有作品",
+            "错标成他人作品，也避免新电脑上无法还原。）",
+            "",
+        ]
+    L += [
         "详见 [APPEARANCE.md](APPEARANCE.md)。",
         "",
         "## 如果你要拿走这里的插件",
@@ -501,7 +552,7 @@ def resolve_ref(api, repo, version, local_sha, probe_path="theme.css"):
     return None, None
 
 
-def scan_appearance(vault, api):
+def scan_appearance(vault, api, outdir):
     cfg = os.path.join(vault, ".obsidian")
     out = {"theme": None, "snippets": []}
 
@@ -553,17 +604,40 @@ def scan_appearance(vault, api):
             with open(p, encoding="utf-8", errors="replace") as f:
                 text = f.read()
             author, lic, _ = sniff_license(text)
-            out["snippets"].append({
+            sha = sha256_file(p)
+            # 不能假定片段都来自主题仓库 —— 那会把使用者自己写的片段
+            # 错标成上游作者的作品（public 仓库里这是归属错误），
+            # 而且恢复时会 404、静默丢失。所以逐个回上游比对 sha256。
+            origin, source = "local", None
+            if t and t.get("ref"):
+                up = fetch_raw(t["repo"], t["ref"], "snippets/" + fn)
+                if up is not None and sha256_bytes(up) == sha:
+                    origin = "theme-repo"
+                    source = raw_url(t["repo"], t["ref"], "snippets/" + fn)
+            rec = {
                 "file": fn,
                 "bytes": os.path.getsize(p),
-                "sha256": sha256_file(p),
+                "sha256": sha,
                 "declaredAuthor": author,
                 "declaredLicense": lic,
-                "sourceUrl": raw_url(t["repo"], t["ref"], "snippets/" + fn)
-                if t and t.get("ref") else None,
-            })
-            print("  ✓ 片段 %-32s %-9s %s"
-                  % (fn, lic or "未声明", author or ""))
+                "origin": origin,
+                "sourceUrl": source,
+                "bundle": None,
+            }
+            if origin == "local":
+                # 自己的作品：没有任何第三方许可问题，直接打包进仓库，
+                # 否则新电脑上无法还原（上游根本没有这个文件）
+                rel = os.path.join("local", "snippets", fn)
+                dst = os.path.join(outdir, rel)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.copy2(p, dst)
+                rec["bundle"] = rel
+            out["snippets"].append(rec)
+            print("  %s 片段 %-30s %-9s %s"
+                  % ("◆" if origin == "local" else "✓", fn,
+                     lic or "未声明",
+                     "本地原创 → 已打包" if origin == "local"
+                     else (author or "上游")))
     return out
 
 

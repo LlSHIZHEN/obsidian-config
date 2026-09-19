@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-18T12:24:39Z",
+  "generatedAt": "2026-09-19T06:25:42Z",
   "generatedFromVault": "AIEngineering",
-  "pluginCount": 7,
+  "pluginCount": 9,
   "plugins": [
     {
       "id": "obsidian-git",
@@ -142,6 +142,46 @@
       "licenseFile": "bundles/mermaid-lens/0.2.3/LICENSE",
       "bundle": "bundles/mermaid-lens/0.2.3",
       "sourceArchive": null
+    },
+    {
+      "id": "unified-typography",
+      "name": "Unified Typography",
+      "version": "0.1.2",
+      "minAppVersion": "1.13.7",
+      "isDesktopOnly": false,
+      "author": "Tychoon",
+      "authorUrl": "",
+      "repo": "tychoon/unified-typography",
+      "tag": "0.1.2",
+      "commit": "e380db1747a13f65a38180a364fca47d03f9be18",
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "path": "LICENSE"
+      },
+      "licenseFile": "bundles/unified-typography/0.1.2/LICENSE",
+      "bundle": "bundles/unified-typography/0.1.2",
+      "sourceArchive": null
+    },
+    {
+      "id": "obsidian-spaced-repetition",
+      "name": "Spaced Repetition",
+      "version": "1.15.4",
+      "minAppVersion": "1.2.8",
+      "isDesktopOnly": false,
+      "author": "Stephen Mwangi",
+      "authorUrl": "https://github.com/st3v3nmw",
+      "repo": "st3v3nmw/obsidian-spaced-repetition",
+      "tag": "1.15.4",
+      "commit": "0f81fc147bc80781f110fe0f7a9a05145d74c581",
+      "license": {
+        "spdx": "MIT",
+        "name": "MIT License",
+        "path": "LICENSE"
+      },
+      "licenseFile": "bundles/obsidian-spaced-repetition/1.15.4/LICENSE",
+      "bundle": "bundles/obsidian-spaced-repetition/1.15.4",
+      "sourceArchive": null
     }
   ],
   "appearance": {
@@ -164,7 +204,9 @@
         "sha256": "145e060073a4f81c9d0d3ef9ea5b1ddbabd2cca1b268fdc5dddf78a07f0d56e8",
         "declaredAuthor": "AnubisNekhet",
         "declaredLicense": "AGPL-3.0",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-background.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-background.css",
+        "bundle": null
       },
       {
         "file": "custom-rainbow-colors.css",
@@ -172,7 +214,9 @@
         "sha256": "ee2b043932b4e9394c4a0d679a856dbe3684a37ec3db3122d928af8064b51a61",
         "declaredAuthor": "AnubisNekhet",
         "declaredLicense": "AGPL-3.0",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-rainbow-colors.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/custom-rainbow-colors.css",
+        "bundle": null
       },
       {
         "file": "extended-colorschemes.css",
@@ -180,7 +224,9 @@
         "sha256": "ac7a68c1e29ba1a56b0b1a786ec88e48e518ddf1c1943ed0c264dae6fa13d6f5",
         "declaredAuthor": null,
         "declaredLicense": null,
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/extended-colorschemes.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/extended-colorschemes.css",
+        "bundle": null
       },
       {
         "file": "floating-search-bar.css",
@@ -188,7 +234,9 @@
         "sha256": "4ebd2299ec1c47c9fc389e26ea5ea74da27bb9346e07e832157773a65c60bf16",
         "declaredAuthor": "AnubisNekhet",
         "declaredLicense": "AGPL-3.0",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-search-bar.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-search-bar.css",
+        "bundle": null
       },
       {
         "file": "floating-status-bar.css",
@@ -196,7 +244,9 @@
         "sha256": "3e491b6d27ed0bfb772f977b2631bae4a33714513a339b6fabb815dc5855c636",
         "declaredAuthor": "AnubisNekhet",
         "declaredLicense": "AGPL-3.0",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-status-bar.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/floating-status-bar.css",
+        "bundle": null
       },
       {
         "file": "its-frontmatter.css",
@@ -204,7 +254,9 @@
         "sha256": "fbfc602041950740288db474324fe3678e086fa0a837b5274cb61b9ff3910c59",
         "declaredAuthor": "SlRvb",
         "declaredLicense": null,
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/its-frontmatter.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/its-frontmatter.css",
+        "bundle": null
       },
       {
         "file": "minimal-cards.css",
@@ -212,7 +264,9 @@
         "sha256": "bd7c9bae65e5060789eac98e49e5018c887483b4935deb38eb5b592e9d254b56",
         "declaredAuthor": "@kepano",
         "declaredLicense": "MIT",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/minimal-cards.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/minimal-cards.css",
+        "bundle": null
       },
       {
         "file": "notion-cards.css",
@@ -220,7 +274,19 @@
         "sha256": "391ce490e5530519a8df02fb029fc49b315f14f491723a7d160019555b46d105",
         "declaredAuthor": "AnubisNekhet",
         "declaredLicense": "AGPL-3.0",
-        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/notion-cards.css"
+        "origin": "theme-repo",
+        "sourceUrl": "https://raw.githubusercontent.com/anubisnekhet/AnuPpuccin/82d207c646904e7af371ced499f682fbdfad1012/snippets/notion-cards.css",
+        "bundle": null
+      },
+      {
+        "file": "text-contrast-fix.css",
+        "bytes": 506,
+        "sha256": "9fe64c245e8c2a62739ba6781af2c29fd7a216f1090b5baf0e438fb7f9f27aa9",
+        "declaredAuthor": null,
+        "declaredLicense": null,
+        "origin": "local",
+        "sourceUrl": null,
+        "bundle": "local/snippets/text-contrast-fix.css"
       }
     ]
   }

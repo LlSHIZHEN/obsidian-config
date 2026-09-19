@@ -91,21 +91,47 @@ def download(repo, tag, dest, offline):
     return got
 
 
-def restore_appearance(cfg, data, offline):
+def restore_appearance(root, cfg, data, offline):
     """恢复主题与 CSS 片段。
 
-    这些资产【不在本仓库里】—— 它们是他人作品，公开仓库分发会引入
+    来自上游的资产【不在本仓库里】—— 它们是他人作品，公开仓库分发会引入
     copyleft 义务。所以这里按 plugins.json 记录的 commit 回上游下载，
     并用记录的 sha256 逐个校验：不校验就等于没还原，因为可能拿到别的版本。
+
+    本地原创的片段（origin == "local"）是所有者自己的作品，已随仓库打包，
+    即使 --offline 也能恢复 —— 它们上游根本不存在，联网也没用。
     """
     a = data.get("appearance") or {}
     t = a.get("theme")
+    sn = a.get("snippets") or []
     problems = []
 
     if offline:
-        print("\n→ 外观资产：--offline 下跳过（本仓库不含这些文件）")
-        return ["主题/片段未恢复（离线模式无法从上游获取）"] if (
-            t or a.get("snippets")) else []
+        print("\n→ 外观资产：离线模式")
+        if t:
+            print("   ⏭ 主题 %s 跳过（上游资产，需联网）" % t.get("name"))
+            problems.append("主题 %s 未恢复（离线）" % t.get("name"))
+        locals_ = [s for s in sn if s.get("origin") == "local"]
+        ups = [s for s in sn if s.get("origin") != "local"]
+        if locals_:
+            sdir = os.path.join(cfg, "snippets")
+            os.makedirs(sdir, exist_ok=True)
+            for s in locals_:
+                src = os.path.join(root, s.get("bundle") or "")
+                if not s.get("bundle") or not os.path.isfile(src):
+                    problems.append("本地片段 %s 在仓库内缺失" % s["file"])
+                    print("   ❌ %s 仓库内副本缺失" % s["file"])
+                    continue
+                dst = os.path.join(sdir, s["file"])
+                shutil.copy2(src, dst)
+                if sha256(dst) != s["sha256"]:
+                    problems.append("本地片段 %s 校验和不符" % s["file"])
+                else:
+                    print("   ✓ %s（本地原创，已校验）" % s["file"])
+        if ups:
+            print("   ⏭ %d 个上游片段跳过（需联网）" % len(ups))
+            problems.append("%d 个上游片段未恢复（离线）" % len(ups))
+        return problems
 
     if t and t.get("ref"):
         dest = os.path.join(cfg, "themes", t["name"])
@@ -132,17 +158,32 @@ def restore_appearance(cfg, data, offline):
     elif t:
         problems.append("主题 %s 在清单里没有可用 ref，无法恢复" % t.get("name"))
 
-    sn = a.get("snippets") or []
     if sn:
         sdir = os.path.join(cfg, "snippets")
         os.makedirs(sdir, exist_ok=True)
-        print("→ 恢复 %d 个 CSS 片段" % len(sn))
+        n_local = sum(1 for s in sn if s.get("origin") == "local")
+        print("→ 恢复 %d 个 CSS 片段（其中 %d 个本地原创，从仓库内取）"
+              % (len(sn), n_local))
         for s in sn:
+            tmp = os.path.join(sdir, s["file"])
+            # 本地原创的片段上游没有，只能从仓库内打包的副本恢复
+            if s.get("origin") == "local":
+                src = os.path.join(root, s.get("bundle") or "")
+                if not s.get("bundle") or not os.path.isfile(src):
+                    problems.append("本地片段 %s 在仓库内缺失" % s["file"])
+                    print("   ❌ %s 仓库内副本缺失" % s["file"])
+                    continue
+                shutil.copy2(src, tmp)
+                if sha256(tmp) != s["sha256"]:
+                    problems.append("本地片段 %s 校验和不符" % s["file"])
+                    print("   ⚠️  %s 校验和不符" % s["file"])
+                else:
+                    print("   ✓ %s（本地原创，已校验）" % s["file"])
+                continue
             if not s.get("sourceUrl"):
                 problems.append("片段 %s 无来源" % s["file"])
                 print("   ❌ %s 无来源，无法恢复" % s["file"])
                 continue
-            tmp = os.path.join(sdir, s["file"])
             p = subprocess.run(["curl", "-sSL", "--fail", "-m", "120",
                                 "-o", tmp, s["sourceUrl"]],
                                capture_output=True, text=True)
@@ -270,7 +311,7 @@ def main():
 
     appearance_problems = []
     if a.with_appearance:
-        appearance_problems = restore_appearance(cfg, data, a.offline)
+        appearance_problems = restore_appearance(root, cfg, data, a.offline)
 
     # 无论是否恢复外观，都检查一次引用是否悬空 —— 静默回落默认外观
     # 是最容易被忽略的迁移失败
